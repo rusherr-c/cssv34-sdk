@@ -7,4 +7,8 @@ Contains **CLIENT & SERVER** source code for CS Source v34
 > * This repo is used for client: [**hl2sdk-ep1c by rom4s**](https://github.com/rom4s/hl2sdk-ep1c/tree/game-cstrike-1)
 > * Got GameDLL\server from **WhoAmI(вилка)**
 
+To build use **Visual Studio 2013**.
+[Download](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332)
+
+
 ${{\color{Red}{\texttt{  NOT\ FOR\ COMMERCIAL\ PURPOSES }}}}$
