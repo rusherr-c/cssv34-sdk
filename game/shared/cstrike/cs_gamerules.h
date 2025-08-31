@@ -173,7 +173,7 @@ public:
 	// Called when game rules are destroyed by CWorld
 	virtual void LevelShutdown( void );
 
-	virtual bool ClientCommand( CBaseEntity *pEdict, const CCommand &args );
+	virtual bool ClientCommand( const char* command, CBaseEntity *pEdict );
 	virtual void PlayerSpawn( CBasePlayer *pPlayer );
 			void ShowSpawnPoints();
 
@@ -431,3 +431,4 @@ int UTIL_HumansInGame( bool ignoreSpectators = false );
 #endif
 
 #endif // TF_GAMERULES_H
+

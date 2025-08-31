@@ -16,6 +16,9 @@
 #endif
 
 #include "tier0/dbg.h"
+#include <unordered_map>
+#include <string>
+
 
 #ifdef _WIN32
 #define FORCEINLINE_CVAR FORCEINLINE
@@ -24,6 +27,8 @@
 #else
 #error "implement me"
 #endif
+
+
 
 // The default, no flags at all
 #define FCVAR_NONE				0 
@@ -83,6 +88,7 @@
 
 class ConVar;
 class ConCommand;
+class CCommand;
 class ConCommandBase;
 
 // Any executable that wants to use ConVars need to implement one of
@@ -116,6 +122,7 @@ typedef void ( *FnChangeCallback )( ConVar *var, char const *pOldString );
 
 // Called when a ConCommand needs to execute
 typedef void ( *FnCommandCallback )( void );
+typedef void (*FnCommandCallback_t)(const CCommand& args);
 
 #define COMMAND_COMPLETION_MAXITEMS		64
 #define COMMAND_COMPLETION_ITEM_LENGTH	64
@@ -221,6 +228,8 @@ public:
 								ConCommand( void );
 								ConCommand( char const *pName, FnCommandCallback callback, 
 									char const *pHelpString = 0, int flags = 0, FnCommandCompletionCallback completionFunc = 0 );
+								ConCommand(char const* pName, FnCommandCallback_t callback,
+									char const* pHelpString = 0, int flags = 0, FnCommandCompletionCallback completionFunc = 0 );
 
 	virtual						~ConCommand( void );
 
@@ -235,13 +244,39 @@ public:
 private:
 	virtual void				Create( char const *pName, FnCommandCallback callback, 
 									char const *pHelpString = 0, int flags = 0, FnCommandCompletionCallback completionFunc = 0 );
+	virtual void				Create(char const* pName, FnCommandCallback_t callback,
+		char const* pHelpString = 0, int flags = 0, FnCommandCompletionCallback completionFunc = 0);
 
 	// Call this function when executing the command
 	FnCommandCallback			m_fnCommandCallback;
+	FnCommandCallback_t			m_fnCommandCallback_t;
 
 	FnCommandCompletionCallback	m_fnCompletionCallback;
 	bool						m_bHasCompletionCallback;
+	bool						m_bUsingNewCommandCallback;
 };
+
+//-----------------------------------------------------------------------------
+// Purpose: ConCommand helper class (ported from sdk 2006)
+//-----------------------------------------------------------------------------
+class CCommand
+{
+public:
+
+	int ArgC() const;
+	const char* ArgV(int index) const;
+	const char* ArgS() const;
+	const char* Arg(int index) const;
+	const char* GetCommandString() const;
+
+	// operator
+	const char* operator[](int index) const;
+
+private:
+
+};
+
+
 
 //-----------------------------------------------------------------------------
 // Purpose: A console variable

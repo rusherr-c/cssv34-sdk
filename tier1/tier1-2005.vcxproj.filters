@@ -89,6 +89,9 @@
     <ClCompile Include="xboxstubs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ccommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\tier1\bitbuf.h">

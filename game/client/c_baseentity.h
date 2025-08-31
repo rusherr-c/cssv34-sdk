@@ -96,7 +96,7 @@ struct VarMapping_t
 
 																	
 
-#define DECLARE_INTERPOLATION
+#define DECLARE_INTERPOLATION()
 
 
 // How many data slots to use when in multiplayer.

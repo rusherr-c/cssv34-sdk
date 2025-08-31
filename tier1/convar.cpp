@@ -24,6 +24,7 @@
 #endif
 #include "tier0/memdbgon.h"
 
+
 ConCommandBase			*ConCommandBase::s_pConCommandBases = NULL;
 IConCommandBaseAccessor	*ConCommandBase::s_pAccessor = NULL;
 
@@ -337,6 +338,7 @@ void ConCommandBase::Create( char const *pName, char const *pHelpString /*= 0*/,
 	}
 }
 
+
 //-----------------------------------------------------------------------------
 // Purpose: Used internally by OneTimeInit to initialize.
 //-----------------------------------------------------------------------------
@@ -544,6 +546,10 @@ ConCommand::ConCommand( char const *pName, FnCommandCallback callback, char cons
 	Create( pName, callback, pHelpString, flags, completionFunc );
 }
 
+ConCommand::ConCommand(char const* pName, FnCommandCallback_t callback, char const* pHelpString /*= 0*/, int flags /*= 0*/, FnCommandCompletionCallback completionFunc)
+{
+	Create(pName, callback, pHelpString, flags, completionFunc);
+}
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -565,15 +571,26 @@ bool ConCommand::IsCommand( void ) const
 //-----------------------------------------------------------------------------
 void ConCommand::Dispatch( void )
 {
-	if ( m_fnCommandCallback )
-	{
-		( *m_fnCommandCallback )();
+	// This is dumb as hell, always creating new command, instead of creating it once somewhere in ConCommand.
+	CCommand command;
+
+	if (m_bUsingNewCommandCallback) {
+		if (m_fnCommandCallback_t)
+		{
+			(*m_fnCommandCallback_t)(command);
+			return;
+		}
 	}
-	else
-	{
-		// Command without callback!!!
-		Assert( 0 );
+	else {
+		if (m_fnCommandCallback)
+		{
+			(*m_fnCommandCallback)();
+			return;
+		}
 	}
+
+	// Command without callback!!!
+	AssertMsg(0, "Encountered ConCommand '%s' without a callback!\n", GetName());
 }
 
 //-----------------------------------------------------------------------------
@@ -601,6 +618,7 @@ void ConCommand::Create( char const *pName, FnCommandCallback callback, char con
 {
 	// Set the callback
 	m_fnCommandCallback = callback;
+	m_bUsingNewCommandCallback = false;
 
 	m_fnCompletionCallback = completionFunc ? completionFunc : DefaultCompletionFunc;
 	m_bHasCompletionCallback = completionFunc != 0 ? true : false;
@@ -608,6 +626,21 @@ void ConCommand::Create( char const *pName, FnCommandCallback callback, char con
 	// Setup the rest
 	BaseClass::Create( pName, pHelpString, flags );
 }
+
+void ConCommand::Create(char const* pName, FnCommandCallback_t callback, char const* pHelpString /*= 0*/, int flags /*= 0*/, FnCommandCompletionCallback completionFunc /*=0*/)
+{
+	// Set callback_t function
+	m_fnCommandCallback_t = callback;
+	m_bUsingNewCommandCallback = true;
+
+	// NOTE: i haven't ported FnCommandCompletionCallback_t from src 2013, so it will use old format.
+	m_fnCompletionCallback = completionFunc ? completionFunc : DefaultCompletionFunc;
+	m_bHasCompletionCallback = completionFunc != 0 ? true : false;
+
+	// Setup the rest
+	BaseClass::Create(pName, pHelpString, flags);
+}
+
 
 //-----------------------------------------------------------------------------
 // Purpose: 

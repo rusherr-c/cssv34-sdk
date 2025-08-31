@@ -1,0 +1,2 @@
+// THIS IS A STUB FOR NEWER MSVC COMPILERS (v140-v143)
+#include <typeinfo>

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glview", "utils\glview\glview-2005.vcxproj", "{BD1604CA-F401-4C4B-821C-251F5AE157FE}"
 EndProject
@@ -32,8 +32,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vvis_launcher", "utils\vvis
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xwad", "utils\xwad\xwad-2005.vcxproj", "{B850012C-98A2-42F7-B023-9F65C448D938}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vgui_controls", "vgui2\controls\vgui_controls-2005.vcxproj", "{C3CEFD6F-5CDC-41DE-8D43-D932F508F51B}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "demoinfo", "utils\demoinfo\demoinfo-2005.vcxproj", "{4FE3FDCA-9571-44B3-A521-C81448434490}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "motionmapper", "utils\motionmapper\motionmapper-2005.vcxproj", "{A882FC08-8B92-4D4F-89BF-75BCEC2BAE11}"
@@ -41,8 +39,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QC_Eyes", "utils\qc_eyes\QC_Eyes-2005.vcxproj", "{D373436F-7DBF-468B-A3E4-601FB8556544}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mathlib", "mathlib\mathlib-2005.vcxproj", "{E1DA9FB8-FB4C-4B14-91A6-98BCED6B9720}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tier1", "tier1\tier1-2005.vcxproj", "{E1DA8DB8-FB4C-4B14-91A6-98BCED6B9720}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "phonemeextractor", "utils\phonemeextractor\phonemeextractor-2005.vcxproj", "{8A35F55B-B5C2-47A0-8C4A-5857A8E20385}"
 EndProject
@@ -116,10 +112,6 @@ Global
 		{B850012C-98A2-42F7-B023-9F65C448D938}.Debug|Win32.Build.0 = Debug|Win32
 		{B850012C-98A2-42F7-B023-9F65C448D938}.Release|Win32.ActiveCfg = Release|Win32
 		{B850012C-98A2-42F7-B023-9F65C448D938}.Release|Win32.Build.0 = Release|Win32
-		{C3CEFD6F-5CDC-41DE-8D43-D932F508F51B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C3CEFD6F-5CDC-41DE-8D43-D932F508F51B}.Debug|Win32.Build.0 = Debug|Win32
-		{C3CEFD6F-5CDC-41DE-8D43-D932F508F51B}.Release|Win32.ActiveCfg = Release|Win32
-		{C3CEFD6F-5CDC-41DE-8D43-D932F508F51B}.Release|Win32.Build.0 = Release|Win32
 		{4FE3FDCA-9571-44B3-A521-C81448434490}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4FE3FDCA-9571-44B3-A521-C81448434490}.Debug|Win32.Build.0 = Debug|Win32
 		{4FE3FDCA-9571-44B3-A521-C81448434490}.Release|Win32.ActiveCfg = Release|Win32
@@ -136,10 +128,6 @@ Global
 		{E1DA9FB8-FB4C-4B14-91A6-98BCED6B9720}.Debug|Win32.Build.0 = Debug|Win32
 		{E1DA9FB8-FB4C-4B14-91A6-98BCED6B9720}.Release|Win32.ActiveCfg = Release|Win32
 		{E1DA9FB8-FB4C-4B14-91A6-98BCED6B9720}.Release|Win32.Build.0 = Release|Win32
-		{E1DA8DB8-FB4C-4B14-91A6-98BCED6B9720}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E1DA8DB8-FB4C-4B14-91A6-98BCED6B9720}.Debug|Win32.Build.0 = Debug|Win32
-		{E1DA8DB8-FB4C-4B14-91A6-98BCED6B9720}.Release|Win32.ActiveCfg = Release|Win32
-		{E1DA8DB8-FB4C-4B14-91A6-98BCED6B9720}.Release|Win32.Build.0 = Release|Win32
 		{8A35F55B-B5C2-47A0-8C4A-5857A8E20385}.Debug|Win32.ActiveCfg = Debug|Win32
 		{8A35F55B-B5C2-47A0-8C4A-5857A8E20385}.Debug|Win32.Build.0 = Debug|Win32
 		{8A35F55B-B5C2-47A0-8C4A-5857A8E20385}.Release|Win32.ActiveCfg = Release|Win32

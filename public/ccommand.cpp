@@ -1,4 +1,6 @@
 #include <cbase.h>
+#include <convar.h>
+
 
 static std::unordered_map<std::string, FnCommandCallback_t> m_Callbacks;
 ConCommand *m_Command;
