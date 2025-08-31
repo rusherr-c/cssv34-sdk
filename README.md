@@ -12,7 +12,7 @@ Libraries: tier1, choreoobjects, mathlib, vgui_controls, appframework(fix soon)
 > * Got GameDLL\server from **WhoAmI(вилка)**
 
 To build use **Visual Studio 2022**.
-[Download](https://archive.org/details/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332)
+
 
 
 ${{\color{Red}{\texttt{  NOT\ FOR\ COMMERCIAL\ PURPOSES }}}}$
