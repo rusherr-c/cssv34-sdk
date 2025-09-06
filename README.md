@@ -2,7 +2,7 @@
 
 Contains source code for CS Source v34
 ```
-Engine Main: launcher(doesn't work, fix soon), launcher_main
+Engine Main: launcher, launcher_main
 Games: client_cstrike, server_cstrike
 Libraries: tier1, choreoobjects, mathlib, vgui_controls, appframework(fix soon)
 ```
