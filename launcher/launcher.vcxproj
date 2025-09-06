@@ -10,6 +10,27 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\public\registry.cpp" />
+    <ClCompile Include="launcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="launcher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\launcher.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\public\appframework.lib" />
+    <Library Include="..\lib\public\tier0.lib" />
+    <Library Include="..\lib\public\tier1.lib" />
+    <Library Include="..\lib\public\tier2.lib" />
+    <Library Include="..\lib\public\tier3.lib" />
+    <Library Include="..\lib\public\vstdlib.lib" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{99ACCA4E-8748-4AAF-A38D-36DCD6F95A23}</ProjectGuid>
@@ -65,7 +86,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\common;..\public;..\public\tier0;..\public\tier1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;_CRT_NO_VA_START_VALIDATION;_CRT_SECURE_NO_WARNINGS;NO_CRT=1;_DEBUG;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;LAUNCHERONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;_DEBUG;DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;fopen=dont_use_fopen;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling />
@@ -73,18 +94,24 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions />
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
       <PrecompiledHeader />
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <AssemblerOutput />
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <BrowseInformation />
       <BrowseInformationFile>$(IntDir)</BrowseInformationFile>
       <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>CompileAsCpp</CompileAs>
+      <ForcedIncludeFiles> ;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ErrorReporting>Prompt</ErrorReporting>
     </ClCompile>
     <ResourceCompile>
@@ -92,11 +119,9 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;winmm.lib;wsock32.lib;odbc32.lib;odbccp32.lib;..\dx9sdk\lib\dinput8.lib;..\dx9sdk\lib\ddraw.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>$(OutDir)launcher.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\lib\common;..\lib\public;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -106,19 +131,20 @@
       <BaseAddress>
       </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
+      <FixedBaseAddress>false</FixedBaseAddress>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <ForceFileOutput>
-      </ForceFileOutput>
+      <AdditionalDependencies>Ws2_32.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Xdcmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Xdcmake>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(OutDir)launcher.bsc</OutputFile>
+      <OutputFile>$(OutDir)default.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to ..\..\game\bin</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PostBuildEvent>
@@ -134,25 +160,30 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>..\common;..\public;..\public\tier0;..\public\tier1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;_CRT_NO_VA_START_VALIDATION;_CRT_SECURE_NO_WARNINGS;NO_CRT=1;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;LAUNCHERONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;fopen=dont_use_fopen;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions />
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
       <PrecompiledHeader />
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <AssemblerOutput />
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <BrowseInformation />
       <BrowseInformationFile>$(IntDir)</BrowseInformationFile>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>CompileAsCpp</CompileAs>
+      <ForcedIncludeFiles> ;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ErrorReporting>Prompt</ErrorReporting>
     </ClCompile>
     <ResourceCompile>
@@ -160,11 +191,9 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;winmm.lib;wsock32.lib;odbc32.lib;odbccp32.lib;..\dx9sdk\lib\dinput8.lib;..\dx9sdk\lib\ddraw.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>$(OutDir)launcher.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\lib\common;..\lib\public;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -176,76 +205,24 @@
       <BaseAddress>
       </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
+      <FixedBaseAddress>false</FixedBaseAddress>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <ForceFileOutput>
-      </ForceFileOutput>
+      <AdditionalDependencies>Ws2_32.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Xdcmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Xdcmake>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(OutDir)launcher.bsc</OutputFile>
+      <OutputFile>$(OutDir)default.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to ..\..\game\bin</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\public\filesystem_init.cpp" />
-    <ClCompile Include="..\public\tier0\memoverride.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="launcher.cpp" />
-    <ClCompile Include="reslistgenerator.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\lib\public\appframework.lib" />
-    <Library Include="..\lib\public\tier0.lib" />
-    <Library Include="..\lib\public\tier1.lib" />
-    <Library Include="..\lib\public\tier2.lib" />
-    <Library Include="..\lib\public\tier3.lib" />
-    <Library Include="..\lib\public\vstdlib.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="launcher.vpc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\common\engine_launcher_api.h" />
-    <ClInclude Include="..\public\appframework\IAppSystem.h" />
-    <ClInclude Include="..\public\commonmacros.h" />
-    <ClInclude Include="..\public\mathlib\vector2d.h" />
-    <ClInclude Include="..\public\protected_things.h" />
-    <ClInclude Include="..\public\string_t.h" />
-    <ClInclude Include="..\public\tier0\basetypes.h" />
-    <ClInclude Include="..\public\tier0\dbg.h" />
-    <ClInclude Include="..\public\tier0\fasttimer.h" />
-    <ClInclude Include="..\public\tier0\mem.h" />
-    <ClInclude Include="..\public\tier0\memalloc.h" />
-    <ClInclude Include="..\public\tier0\platform.h" />
-    <ClInclude Include="..\public\tier0\vcrmode.h" />
-    <ClInclude Include="..\public\tier0\vcr_shared.h" />
-    <ClInclude Include="..\public\tier1\interface.h" />
-    <ClInclude Include="..\public\vgui\IHTML.h" />
-    <ClInclude Include="..\public\vgui\IImage.h" />
-    <ClInclude Include="..\public\vgui\ISurface.h" />
-    <ClInclude Include="..\public\vgui\KeyCode.h" />
-    <ClInclude Include="..\public\vgui\MouseCode.h" />
-    <ClInclude Include="..\public\vgui\VGUI.h" />
-    <ClInclude Include="..\public\vstdlib\ICommandLine.h" />
-    <ClInclude Include="..\public\vstdlib\strtools.h" />
-    <ClInclude Include="..\public\vstdlib\vstdlib.h" />
-    <ClInclude Include="ifilesystem.h" />
-    <ClInclude Include="reslistgenerator.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
