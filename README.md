@@ -4,7 +4,7 @@ Contains source code for CS Source v34
 ```
 Engine Main: launcher, launcher_main
 Games: client_cstrike, server_cstrike
-Libraries: tier1, choreoobjects, mathlib, vgui_controls, appframework(fix soon)
+Libraries: tier1, choreoobjects, mathlib, vgui_controls, appframework(precompiled by Valve, not compileable now)
 ```
 > [!NOTE]
 > * This repo is used as base for cstrike-sdk(public, tier1, etc..) [**source-2007**](https://github.com/uvbs/source-2007)
